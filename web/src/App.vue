@@ -1,12 +1,29 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <NavBar />
+    <div id="app">
+      <router-view/>
+    </div>
   </div>
-  <router-view/>
 </template>
 
-<style>
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component'
+import NavBar from '@/components/NavBar.vue'
+
+@Options({
+  components: {
+    NavBar,
+  },
+})
+export default class App extends Vue {
+  isSignedIn(): boolean {
+    return this.$route.name !== 'Sign In'
+  }
+}
+</script>
+
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

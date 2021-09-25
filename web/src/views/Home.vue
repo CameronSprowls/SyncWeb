@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <NavBar />
+    Hello, would you like to destroy some evil today?
   </div>
+
+  <button @click="doTheThing" >
+    Do The Thing!
+  </button>
+
+  {{response}}
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import NavBar from '@/components/NavBar.vue';
+import { Vue } from 'vue-class-component';
+import test from '@/api/test';
 
-@Options({
-  components: {
-    NavBar,
-  },
-})
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  response = ''
+
+  async doTheThing(): Promise<void> {
+    await test.test().then((response) => {
+      this.response = response
+    })
+  }
+}
 </script>

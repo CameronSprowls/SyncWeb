@@ -55,5 +55,11 @@ export default class NavBar extends Vue {
 .nav-bar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+  &.router-link-active.exact {
+    svg {
+      fill: red;
+    }
+  }
 }
 </style>
