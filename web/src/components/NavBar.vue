@@ -4,7 +4,7 @@
       :to="{ name: PAGE_NAMES.HOME }"
       :class="{ exact: $route.name === PAGE_NAMES.HOME }"
     >
-      <div>
+      <div class="nav-button inline-container">
         <HomeIcon />
         <p>Home</p>
       </div>
@@ -14,17 +14,17 @@
       :to="{ name: PAGE_NAMES.USER }"
       :class="{ exact: $route.name === PAGE_NAMES.USER }"
     >
-      <div>
+      <div class="nav-button inline-container">
         <UserIcon />
-        <p>User</p>
+        <p>Sandbox</p>
       </div>
     </router-link>
-    
+
     <router-link
       :to="{ name: PAGE_NAMES.SETTINGS }"
       :class="{ exact: $route.name === PAGE_NAMES.SETTINGS }"
     >
-      <div>
+      <div class="nav-button inline-container">
         <SettingsIcon />
         <p>Settings</p>
       </div>
@@ -52,14 +52,26 @@ export default class NavBar extends Vue {
 </script>
 
 <style scoped lang="scss">
+
 .nav-bar {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  .nav-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      :visited {
+        text-decoration: none;
+      }
+    }
+  }
 
   &.router-link-active.exact {
-    svg {
-      fill: red;
-    }
+    background-color: blue;
   }
 }
 </style>

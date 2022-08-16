@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="light-theme" id="root-app">
     <NavBar />
     <div id="app">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -24,24 +24,16 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
+// Intentionally leaving off scoped so common is easier to user
+@import "styles/common.scss";
+@import "styles/_theme.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  //height: 100vh;
 }
 </style>

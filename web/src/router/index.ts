@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
-import User from '@/views/User.vue'
+import User from '@/views/Sandbox.vue'
 import Settings from '@/views/Settings.vue'
-import { PAGE_NAMES } from '@/misc/constants.ts'
+import { PAGE_NAMES } from '@/misc/constants'
 
 const DEFAULT_PATH = "/"
 

@@ -1,0 +1,69 @@
+:root {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  background-color: gray;
+
+  // Okay this works but feels bad cause I would like the padding to be inclusive of theme color?
+  body {
+    margin: 0;
+    padding: 0;
+
+    #app {
+      @import "theme-base";
+      //* {
+      //  transition: all 2s ease; // WHAT IS THIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIS
+      //}
+
+      .light-theme {
+        @import "lightmode";
+        @include theme-base(
+          $background-primary: $background-primary,
+          $background-secondary: $background-secondary,
+          $background-tertiary: $background-tertiary,
+          $text-primary: $text-primary,
+          $text-secondary: $text-secondary,
+          //$text-tertiary: $text-tertiary,
+          $icon-primary: $icon-primary,
+          $background-primary-gradient: $background-primary-gradient,
+        );
+      }
+
+      .dark-theme {
+        @import "darkmode";
+        @include theme-base(
+          $background-primary: $background-primary,
+          $background-secondary: $background-secondary,
+          $background-tertiary: $background-tertiary,
+          $text-primary: $text-primary,
+          $text-secondary: $text-secondary,
+          //$text-tertiary: $text-tertiary,
+          $icon-primary: $icon-primary,
+          $background-primary-gradient: $background-primary-gradient,
+        );
+      }
+
+      .blue-theme {
+        @import "bluemode";
+        @include theme-base(
+            $background-primary: $background-primary,
+            $background-secondary: $background-secondary,
+            $background-tertiary: $background-tertiary,
+            $text-primary: $text-primary,
+            $text-secondary: $text-secondary,
+            //$text-tertiary: $text-tertiary,
+            $icon-primary: $icon-primary,
+            $background-primary-gradient: $background-primary-gradient,
+        );
+      }
+
+      .why {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

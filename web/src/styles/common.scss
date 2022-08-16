@@ -1,0 +1,12 @@
+.inline-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: min-content min-content;
+  column-gap: 16px;
+  margin: auto;
+}
+
+.content {
+  height: 95vh; // TODO Bad cameron
+  padding: 15px;
+}

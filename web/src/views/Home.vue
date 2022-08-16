@@ -1,13 +1,16 @@
 <template>
-  <div class="home">
-    Hello, would you like to destroy some evil today?
+  <div class="content">
+    <div class="home">
+      Hello, would you like to destroy some evil today?
+    </div>
+
+    <button @click="doTheThing" >
+      Do The Thing!
+    </button>
+
+    {{response}}
+
   </div>
-
-  <button @click="doTheThing" >
-    Do The Thing!
-  </button>
-
-  {{response}}
 </template>
 
 <script lang="ts">
