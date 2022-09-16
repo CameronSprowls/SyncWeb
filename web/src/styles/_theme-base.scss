@@ -54,7 +54,19 @@
       background-color: $background-tertiary;
     }
   }
-
+  
+  .__input {
+    color: $text-primary;    
+    background-color: $background-primary;
+    border-style: none none solid none;
+    border-bottom-color: $background-secondary;
+    
+    &:focus {
+      outline: none;
+      border-bottom-color: $background-tertiary;
+    }
+  }
+  
   .__multiselect {
     input {
       color: $text-primary;

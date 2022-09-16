@@ -1,26 +1,42 @@
 <template>
   <div class="content">
-    Sandbox
+    <div class="sandbox-container">
+      Sandbox
+      <Switch />
+      <Input/>
+      <Multiselect />
+    </div>
   </div>
-
-  <Switch />
-
-  <Multiselect />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Switch from '@/components/Switch.vue';
+import Input from '@/components/Input.vue';
 import Multiselect from '@/components/Multiselect.vue';
+import Switch from '@/components/Switch.vue';
 
 @Options({
   components: {
+    Input,
     Multiselect,
-    Switch
-  }
+    Switch,
+  } 
 })
 export default class NavBar extends Vue {}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.content {  
+  display: flex;
+  justify-content: center;
+  .sandbox-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    
+    max-height: 100px;
+    max-width: 150px;
+  }
+}
+
 </style>
