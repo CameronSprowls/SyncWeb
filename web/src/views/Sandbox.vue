@@ -3,7 +3,10 @@
     <div class="sandbox-container">
       Sandbox
       <Switch />
-      <Input/>
+      <Input
+        initial-value="bar"
+        label="foo"
+      />
       <Multiselect />
     </div>
   </div>
