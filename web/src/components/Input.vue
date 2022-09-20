@@ -2,39 +2,37 @@
   <div class="__input_container">
     <div
         class="__label"
-        :class="selected ? 'selected' : ''"
+        :class="shrinkLabel ? 'shrinkLabel' : ''"
     >
       {{ label }}
     </div>
     <input
-      v-model="value"
       class="__input"
       type="text"
-      @focus="selected = true"
-      @blur="handleBlur"
+      :value="value"
+      @focus="isFocused = true"
+      @blur="isFocused = false"
+      @input="$emit('update:value', $event.target.value)"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
+import { Prop, Watch } from 'vue-property-decorator';
 
 @Options({})
 export default class Input extends Vue {
-  @Prop({ default: '' }) initialValue!: string
+  @Prop() value!: string
   @Prop({ default: '' }) label!: string
 
-  private value = ''
-  private selected = false
+  private shrinkLabel = false;
+  private isFocused = false;
 
-  mounted(): void {
-    this.selected = !!this.initialValue
-    this.value = this.initialValue
-  }
-
-  handleBlur(): void {
-    this.selected = !!this.value
+  @Watch('value', { immediate: true })
+  @Watch('isFocused')
+  updateShrinkLabel(): void {
+    this.shrinkLabel = !!this.value || this.isFocused;
   }
 }
 </script>
@@ -47,7 +45,7 @@ export default class Input extends Vue {
     position: absolute;
     font-size: 18px;
 
-    &.selected {
+    &.shrinkLabel {
       font-size: 12px;
       margin-top: -8px;
     }

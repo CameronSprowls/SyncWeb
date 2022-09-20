@@ -4,7 +4,7 @@
       Sandbox
       <Switch />
       <Input
-        initial-value="bar"
+        v-model:value="temp"
         label="foo"
       />
       <Multiselect />
@@ -25,7 +25,13 @@ import Switch from '@/components/Switch.vue';
     Switch,
   } 
 })
-export default class NavBar extends Vue {}
+export default class NavBar extends Vue {
+  private temp = '';
+
+  mounted(): void {
+    this.temp = 'foobar';
+  }
+}
 </script>
 
 <style scoped lang="scss">
