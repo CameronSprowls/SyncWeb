@@ -7,19 +7,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component'
+<script setup lang="ts">
 import NavBar from '@/components/NavBar.vue'
+import { useRoute } from 'vue-router';
 
-@Options({
-  components: {
-    NavBar,
-  },
-})
-export default class App extends Vue {
-  isSignedIn(): boolean {
-    return this.$route.name !== 'Sign In'
-  }
+const route = useRoute()
+
+function isSignedIn(): boolean {
+  return route.name !== 'Sign In'
 }
 </script>
 

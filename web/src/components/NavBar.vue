@@ -32,23 +32,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
 import SettingsIcon from '@/assets/img/settings-icon.svg';
 import HomeIcon from '@/assets/img/home-icon.svg';
 import UserIcon from '@/assets/img/user-icon.svg';
 import { PAGE_NAMES } from '@/misc/constants';
-
-@Options({
-  components: {
-    SettingsIcon,
-    HomeIcon,
-    UserIcon
-  },
-})
-export default class NavBar extends Vue {
-  PAGE_NAMES = PAGE_NAMES
-}
 </script>
 
 <style scoped lang="scss">

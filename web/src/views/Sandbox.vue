@@ -12,37 +12,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import Input from '@/components/Input.vue';
 import Multiselect from '@/components/Multiselect.vue';
 import Switch from '@/components/Switch.vue';
 
-@Options({
-  components: {
-    Input,
-    Multiselect,
-    Switch,
-  } 
-})
-export default class NavBar extends Vue {
-  private temp = '';
+const temp = ref('');
 
-  mounted(): void {
-    this.temp = 'foobar';
-  }
-}
+onMounted(() => {
+  temp.value = 'foobar';
+})
 </script>
 
 <style scoped lang="scss">
-.content {  
+.content {
   display: flex;
   justify-content: center;
   .sandbox-container {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    
+
     max-height: 100px;
     max-width: 150px;
   }

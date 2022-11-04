@@ -7,16 +7,14 @@
       <p>Theme</p>
 
       <Multiselect
-        :values="themes"
+        :values="themes()"
         @changedValue="switchTheme($event)"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import Switch from '../components/Switch.vue';
+<script setup lang="ts">
 import Multiselect from '../components/Multiselect.vue';
 
 enum Themes {
@@ -25,26 +23,16 @@ enum Themes {
   Blue = 'blue-theme',
 }
 
+const selectedTheme = Themes.Light
 
+function switchTheme(theme: string): void {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const root = document.getElementById("root-app")!
+  root.setAttribute("class", theme)
+}
 
-@Options({
-  components: {
-    Multiselect,
-    Switch,
-  }
-})
-export default class NavBar extends Vue {
-  private selectedTheme = Themes.Light
-
-  switchTheme(theme: string): void {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const root = document.getElementById("root-app")!
-    root.setAttribute("class", theme)
-  }
-
-  get themes(): string[] {
-    return Object.values(Themes);
-  }
+function themes(): string[] {
+  return Object.values(Themes);
 }
 </script>
 

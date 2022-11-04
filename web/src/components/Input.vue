@@ -17,24 +17,24 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import { Prop, Watch } from 'vue-property-decorator';
+<script setup lang="ts">
+import { ref, watch, withDefaults, defineProps, onMounted } from 'vue';
 
-@Options({})
-export default class Input extends Vue {
-  @Prop() value!: string
-  @Prop({ default: '' }) label!: string
-
-  private shrinkLabel = false;
-  private isFocused = false;
-
-  @Watch('value', { immediate: true })
-  @Watch('isFocused')
-  updateShrinkLabel(): void {
-    this.shrinkLabel = !!this.value || this.isFocused;
-  }
+interface InputProps {
+  value: string
+  label?: string
 }
+
+const props = withDefaults(defineProps<InputProps>(), {
+  label: ''
+})
+
+const shrinkLabel = ref(false);
+const isFocused = ref(false);
+
+watch([() => props.value, isFocused], () => {
+  shrinkLabel.value = !!props.value || isFocused.value;
+}, { immediate: true })
 </script>
 
 <style scoped lang="scss">

@@ -10,23 +10,27 @@
   </label>
 </template>
 
-<script>
-import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
+<script setup lang="ts">
+import { withDefaults, defineProps, defineEmits } from 'vue';
 
-@Options({})
-export default class Switch extends Vue {
-  @Prop() value
-  @Prop({ default: false }) disabled
-
-  checked(isChecked) {
-    this.$emit('blah', isChecked)
-  }
-
-  // get label(): string {
-  //   return this.value ? 'On': 'Off'
-  // }
+interface SwitchProps {
+  value: string
+  disabled: boolean
 }
+
+withDefaults(defineProps<SwitchProps>(), {
+  disabled: false
+})
+
+const emit = defineEmits(['blah'])
+
+function checked(isChecked: boolean) {
+  emit('blah', isChecked)
+}
+
+// function label(): string {
+//   return this.value ? 'On': 'Off'
+// }
 </script>
 
 <style scoped>

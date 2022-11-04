@@ -10,7 +10,7 @@
     />
 
     <div
-      v-if="isFocused"
+      v-if="focused"
       class="__multiselect-dropdown-container"
       tabindex="0"
     >
@@ -34,46 +34,43 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import { Prop } from 'vue-property-decorator';
+<script setup lang="ts">
+import { ref, onMounted, defineEmits, defineProps } from 'vue';
 
-@Options({})
-export default class Multiselect extends Vue {
-  @Prop() values!: string[]
-  @Prop( { default: null }) preselectedValue!: string|null
+interface MultiselectProps {
+  values: string[]
+  preselectedValue?: string
+}
 
-  private selectedValue = ''
-  private focused = false
+const props = defineProps<MultiselectProps>()
+const emit = defineEmits(['changedValue'])
 
-  mounted(): void {
-    if (this.preselectedValue) {
-      this.selectValue(this.preselectedValue)
-    }
+const selectedValue = ref('')
+const focused = ref(false)
+
+onMounted(() => {
+  if (props.preselectedValue) {
+    selectValue(props.preselectedValue)
   }
+})
 
-  selectValue(value: string): void {
-    this.selectedValue = value
+function selectValue(value: string): void {
+  selectedValue.value = value
 
-    // TODO make this conditional based on if they want "single select" or not
-    this.changeDisplay(false)
+  // TODO make this conditional based on if they want "single select" or not
+  changeDisplay(false)
 
-    this.$emit('changedValue', value)
-  }
+  emit('changedValue', value)
+}
 
-  changeDisplay(newDisplay: boolean): void {
-    this.focused = newDisplay
-  }
+function changeDisplay(newDisplay: boolean): void {
+  focused.value = newDisplay
+}
 
-  get isFocused(): boolean {
-    return this.focused
-  }
-
-  handleBlur(event: FocusEvent): void {
-    // If the related target is null, we are targeting outside this component, so close it
-    if (!event.relatedTarget) {
-      this.changeDisplay(false)
-    }
+function handleBlur(event: FocusEvent): void {
+  // If the related target is null, we are targeting outside this component, so close it
+  if (!event.relatedTarget) {
+    changeDisplay(false)
   }
 }
 </script>
